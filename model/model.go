@@ -119,6 +119,7 @@ type Activity struct{
 	EventTitle string `json:"event_title"`
 	EventSummary string `json:"event_summary"`
 	EventID string `json:"event_id"`
+	Tag string `json:"tag"`
 }
 type News struct{
 	ID int64 `json:"id"`
@@ -133,4 +134,6 @@ type Home struct{
 	Icons []Icon `json:"icons"`
 	CityTT CityToutiao `json:"cityToutiao"`
 	Zones []ZoneItem `json:"zones"`
+	Activities []Activity `json:"activities"`
+	News []News `json:"news"`
 }

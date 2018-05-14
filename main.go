@@ -60,9 +60,9 @@ func Home(w http.ResponseWriter, req *http.Request) {
 	db.Table("btk_Icon").Select("id, title,icon,target_id,web_url,type").Find(&icons)
 	fmt.Println("icons is",icons)
 	var cityToutiao model.CityToutiao
-	cityToutiao.Icon = ""
-	cityToutiao.Cover = ""
-	cityToutiao.Title = "xxx"
+	cityToutiao.Icon = "http://inj-zone-img.bitekun.xin/resource/svg_life.png"
+	cityToutiao.Cover = "http://inj-zone-img.bitekun.xin/resource/tt.jpg"
+	cityToutiao.Title = "春夏新品大促 来啊来啊来啊"
 	cityToutiao.Type = 1
 	cityToutiao.TargetID = 1
 	cityToutiao.WebURL = "bbb"
@@ -74,7 +74,7 @@ func Home(w http.ResponseWriter, req *http.Request) {
 	//get goods 待开发
 	//get activity
 	var activities []model.Activity
-    db.Raw("select event_id,event_title,event_summary,event_thumb from t_event limit 0,4").Find(&activities)
+    db.Raw("select tag,event_id,event_title,event_summary,event_thumb from t_event limit 0,4").Find(&activities)
     fmt.Println("activies is",activities)
     //get news
     var news []model.News
@@ -87,6 +87,9 @@ func Home(w http.ResponseWriter, req *http.Request) {
 	home.Zones = zones
 	home.Icons = icons
 	home.CityTT = cityToutiao
+	home.Activities = activities
+	home.News = news
+
 	data, err := json.Marshal(home)
 	if err != nil {
 		log.Fatal("err get data: ", err)
