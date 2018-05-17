@@ -30,7 +30,8 @@ func StartUp(w http.ResponseWriter, req *http.Request) {
 	}
 	defer db.Close()
 	var start model.StartUpModel
-	db.Raw("select cover,`force`,number,msg,downloadUrl as download_url from btk_Version where client=?",req.URL.Query().Get("client")).First(&start)
+	db.Raw("select cover,coverx,`force`,number,msg,downloadUrl as download_url from btk_Version where client=?",req.URL.Query().Get("client")).First(&start)
+	start.CoverX = "http://tingting-resource.bitekun.xin/resource/image/icon/phonex.jpg"
 	fmt.Println("start is",start)
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Server", "A Go Web Server")

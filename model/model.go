@@ -13,7 +13,9 @@ type StartUpModel struct{
 	// number
 	Number float64 `json:"number,omitempty"`
 
-	Cover string `json:"cover,omitempty"`
+	Cover string `json:"cover"`
+
+	CoverX string `json:"coverx"`
 
 }
 
