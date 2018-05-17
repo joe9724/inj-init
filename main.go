@@ -59,14 +59,10 @@ func Home(w http.ResponseWriter, req *http.Request) {
 	var icons []model.Icon
 	db.Table("btk_Icon").Select("id, title,icon,target_id,web_url,type").Find(&icons)
 	fmt.Println("icons is",icons)
-	var cityToutiao model.CityToutiao
-	cityToutiao.Icon = "http://inj-zone-img.bitekun.xin/resource/svg_life.png"
-	cityToutiao.Cover = "http://inj-zone-img.bitekun.xin/resource/tt.jpg"
-	cityToutiao.Title = "春夏新品大促 来啊来啊来啊"
-	cityToutiao.Type = 1
-	cityToutiao.TargetID = 1
-	cityToutiao.WebURL = "bbb"
-	fmt.Println("cityToutiao is",cityToutiao)
+	var cityBanner model.CityToutiao
+	db.Raw("select id,icon,type,status,title,target_id,web_url,cover,style,sub_title from btk_Toutiao where style='banner' order by id desc limit 0,1").Find(&cityBanner)
+	var cityTopList []model.CityToutiao
+	db.Raw("select id,icon,type,status,title,target_id,web_url,cover,style,sub_title from btk_Toutiao  order by id desc limit 0,12 ").Find(&cityTopList)
 	//get zones
 	var zones []model.ZoneItem
 	db.Raw("SELECT ZoneID as zone_id, Name as name, Logo as logo, Brief as brief, MemberCount as member_count, Level as level, Tag as tag, CreateAt as create_at FROM btk_Zone WHERE Status = 0 ORDER BY CreateAt DESC").Limit(6).Offset(0).Find(&zones)
@@ -77,18 +73,19 @@ func Home(w http.ResponseWriter, req *http.Request) {
     db.Raw("select tag,event_id,event_title,event_summary,event_thumb from t_event limit 0,4").Find(&activities)
     fmt.Println("activies is",activities)
     //get news
-    var news []model.News
+   /* var news []model.News
     db.Raw("select id,thumb,title,source,create_time,web_url from btk_News limit 0,6").Find(&news)
-    fmt.Println("news is",news)
+    fmt.Println("news is",news)*/
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Server", "A Go Web Server")
 	home.Banners = banners
 	home.Zones = zones
 	home.Icons = icons
-	home.CityTT = cityToutiao
+	home.CityBanner = cityBanner
+	home.CityTopList = cityTopList
 	home.Activities = activities
-	home.News = news
+	//home.News = news
 
 	data, err := json.Marshal(home)
 	if err != nil {

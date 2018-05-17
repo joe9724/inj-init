@@ -68,6 +68,8 @@ type CityToutiao struct {
 	// name
 	Title string `json:"title"`
 
+	SubTitle string `json:"sub_title"`
+
 	// order
 	Order int64 `json:"order"`
 
@@ -78,6 +80,10 @@ type CityToutiao struct {
 	WebURL string `json:"web_url"`
 
 	TargetID int64 `json:"target_id"`
+
+	Style string `json:"style"`
+
+	Status int64 `json:"status"`
 }
 type ZoneItem struct {
 
@@ -132,8 +138,10 @@ type News struct{
 type Home struct{
 	Banners []Banner `json:"banners"`
 	Icons []Icon `json:"icons"`
-	CityTT CityToutiao `json:"cityToutiao"`
+	// CityTT CityToutiao `json:"cityToutiao"`
 	Zones []ZoneItem `json:"zones"`
 	Activities []Activity `json:"activities"`
-	News []News `json:"news"`
+	//News []News `json:"news"`
+	CityTopList []CityToutiao `json:"cityToplist"`
+	CityBanner CityToutiao `json:"cityBanner"`
 }
