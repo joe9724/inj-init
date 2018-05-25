@@ -123,6 +123,8 @@ type ZoneItem struct {
 	// 圈子唯一标识符
 	// Required: true
 	ZoneID int64 `json:"zone_id"`
+
+	Cover string `json:"cover"`
 }
 type Activity struct{
 	EventThumb string `json:"event_thumb"`

@@ -67,7 +67,7 @@ func Home(w http.ResponseWriter, req *http.Request) {
 	db.Raw("select id,icon,type,status,title,target_id,web_url,cover,style,sub_title from btk_Toutiao  order by id desc limit 0,12 ").Find(&cityTopList)
 	//get zones
 	var zones []model.ZoneItem
-	db.Raw("SELECT ZoneID as zone_id, Name as name, Logo as logo, Brief as brief, MemberCount as member_count, Level as level, Tag as tag, CreateAt as create_at FROM btk_Zone WHERE Status = 0 ORDER BY CreateAt DESC").Limit(6).Offset(0).Find(&zones)
+	db.Raw("SELECT Cover as cover,ZoneID as zone_id, Name as name, Logo as logo, Brief as brief, MemberCount as member_count, Level as level, Tag as tag, CreateAt as create_at FROM btk_Zone WHERE Status = 0 ORDER BY CreateAt DESC").Limit(6).Offset(0).Find(&zones)
 	fmt.Println("zones is",zones)
 	//get goods 待开发
 	//get activity
