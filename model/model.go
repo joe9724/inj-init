@@ -17,6 +17,8 @@ type StartUpModel struct{
 
 	CoverX string `json:"coverx"`
 
+	ShareUrl string `json:"shareUrl"`
+
 }
 
 //首页model细分
