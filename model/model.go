@@ -38,6 +38,8 @@ type Banner struct {
 
 	WebUrl string `json:"webUrl"`
 
+	EventID string `json:"event_id"`
+
 }
 type Icon struct {
 	// icon
@@ -88,6 +90,8 @@ type CityToutiao struct {
 	Style string `json:"style"`
 
 	Status int64 `json:"status"`
+
+	EventID string `json:"event_id"`
 }
 type ZoneItem struct {
 

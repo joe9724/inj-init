@@ -55,14 +55,14 @@ func Home(w http.ResponseWriter, req *http.Request) {
 	var home model.Home
 	//get banners
 	var banners []model.Banner
-	db.Raw("select id,title,type,cover,target_id,web_url from btk_Banner").Find(&banners)
+	db.Raw("select id,title,type,cover,target_id,web_url,event_id from btk_Banner").Find(&banners)
 	fmt.Println("banners is",banners)
 	//get icons
 	var icons []model.Icon
 	db.Table("btk_Icon").Select("id, title,icon,target_id,web_url,type").Find(&icons)
 	fmt.Println("icons is",icons)
 	var cityBanner model.CityToutiao
-	db.Raw("select id,icon,type,status,title,target_id,web_url,cover,style,sub_title from btk_Toutiao where style='banner' order by id desc limit 0,1").Find(&cityBanner)
+	db.Raw("select id,icon,type,status,title,event_id,target_id,web_url,cover,style,sub_title from btk_Toutiao where style='banner' order by id desc limit 0,1").Find(&cityBanner)
 	var cityTopList []model.CityToutiao
 	db.Raw("select id,icon,type,status,title,target_id,web_url,cover,style,sub_title from btk_Toutiao  order by id desc limit 0,12 ").Find(&cityTopList)
 	//get zones
