@@ -21,6 +21,12 @@ type StartUpModel struct{
 
 }
 
+type Post struct {
+	PostID int64 `json:"post_id"`
+	ZoneName string `json:"zone_name"`
+	ThumbPic string `json:"thumb_pic"`
+}
+
 //首页model细分
 //Banner
 type Banner struct {
@@ -154,4 +160,5 @@ type Home struct{
 	//News []News `json:"news"`
 	CityTopList []CityToutiao `json:"cityToplist"`
 	CityBanner CityToutiao `json:"cityBanner"`
+	Posts []Post `json:"posts"`
 }

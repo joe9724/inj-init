@@ -9,6 +9,7 @@ import (
 	"encoding/json"
 	"inj-init/utils"
 	"inj-init/model"
+	"strings"
 )
 
 
@@ -78,9 +79,18 @@ func Home(w http.ResponseWriter, req *http.Request) {
    /* var news []model.News
     db.Raw("select id,thumb,title,source,create_time,web_url from btk_News limit 0,6").Find(&news)
     fmt.Println("news is",news)*/
+    //get posts
+    var posts []model.Post
+    db.Raw("select PostID as post_id,ZoneID as zone_id,ThumbPics as thumb_pic from btk_Posts order by PostID desc limit 0,6").Find(&posts)
+    fmt.Println("posts is",posts)
+	for i:=0; i<len(posts);i++  {
+		s := strings.Split(posts[i].ThumbPic,",")
+		posts[i].ThumbPic = s[0]
+	}
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Server", "A Go Web Server")
+	home.Posts = posts
 	home.Banners = banners
 	home.Zones = zones
 	home.Icons = icons
