@@ -42,7 +42,7 @@ type Banner struct {
 
 	TargetID int64 `json:"target_id"`
 
-	WebUrl string `json:"webUrl"`
+	WebUrl string `json:"web_url"`
 
 	EventID string `json:"event_id"`
 
